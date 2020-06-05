@@ -7,5 +7,4 @@ iOS Target 13.0
 
 ###How to use : 
 
-1] Open the app and scan QR codes from "Sample Qrcode" folder.This will add action figure in your cart. 
-2] To add more item in your cart, click on "Scan more" 
+Open the app and scan QR codes from "Sample Qrcode" folder.This will add action figure in your cart. To add more item in your cart, click on "Scan more" 
