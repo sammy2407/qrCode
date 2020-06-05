@@ -6,11 +6,11 @@
 //  Copyright © 2020 Shivam. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-struct Product {
+struct Product: Codable {
     let title: String
-    let price: Int
-    let image: UIImage
+    let image: String
+    let price: String
 }
 

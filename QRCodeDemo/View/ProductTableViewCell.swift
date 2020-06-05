@@ -22,10 +22,8 @@ class ProductTableViewCell: UITableViewCell {
     
     func configureCell(with product: Product) {
         productTitle.text = product.title
-        productPrice.text = String(product.price)
-        productImage.image = product.image
+        productPrice.text = Constant.DOLLAR_SIGN + String(product.price)
+        let imageData = try? Data(contentsOf: URL(string: product.image)!)
+        productImage.image = UIImage(data: imageData!)
     }
-
-    
-    
 }

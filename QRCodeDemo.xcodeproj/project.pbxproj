@@ -20,6 +20,7 @@
 		40E7E60C248A7AEE00E4E3B3 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7E60A248A7AEE00E4E3B3 /* ProductTableViewCell.swift */; };
 		40E7E60D248A7AEE00E4E3B3 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E7E60B248A7AEE00E4E3B3 /* ProductTableViewCell.xib */; };
 		40E7E618248A845A00E4E3B3 /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = 40E7E617248A845900E4E3B3 /* success.json */; };
+		40E7E61A248A9AD300E4E3B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7E619248A9AD300E4E3B3 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		40E7E60A248A7AEE00E4E3B3 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		40E7E60B248A7AEE00E4E3B3 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		40E7E617248A845900E4E3B3 /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
+		40E7E619248A9AD300E4E3B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +79,10 @@
 				40112965237A91B3003775A6 /* Info.plist */,
 				40112962237A91B3003775A6 /* LaunchScreen.storyboard */,
 				40E7E617248A845900E4E3B3 /* success.json */,
+				40E7E60F248A822400E4E3B3 /* Model */,
 				40E7E612248A823800E4E3B3 /* User Interface */,
 				40E7E611248A823300E4E3B3 /* View */,
 				40E7E610248A822A00E4E3B3 /* ViewController */,
-				40E7E60F248A822400E4E3B3 /* Model */,
 				40E7E60E248A821C00E4E3B3 /* View Model */,
 			);
 			path = QRCodeDemo;
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				40E7E606248A771200E4E3B3 /* ProductModel.swift */,
+				40E7E619248A9AD300E4E3B3 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				40112958237A91B2003775A6 /* AppDelegate.swift in Sources */,
 				4011295A237A91B2003775A6 /* SceneDelegate.swift in Sources */,
 				4011296E237A989E003775A6 /* QRScannerView.swift in Sources */,
+				40E7E61A248A9AD300E4E3B3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

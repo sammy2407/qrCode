@@ -13,7 +13,7 @@ import AVFoundation
 
 protocol QRScannerViewDelegate: class {
     func qrScanningDidFail()
-    func qrScanningSucceededWithCode(_ str: String?)
+    func qrScanningSucceededWith(data: Product?)
     func qrScanningDidStop()
 }
 
@@ -95,8 +95,8 @@ extension QRScannerView {
         captureSession = nil
     }
     
-    func found(code: String) {
-        delegate?.qrScanningSucceededWithCode(code)
+    func found(data: Product?) {
+        delegate?.qrScanningSucceededWith(data: data)
     }
     
 }
@@ -111,7 +111,9 @@ extension QRScannerView: AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
+            let data = stringValue.data(using: .utf8)
+            let jsonData = try? JSONDecoder().decode(Product.self, from: data!)
+            found(data: jsonData)
         }
     }
 }
