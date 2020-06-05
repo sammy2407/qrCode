@@ -14,7 +14,6 @@ class ScannerDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var payButton: UIButton!
     
     var viewModel: ScannerDetailViewModel!
-    var codeDetails: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +23,12 @@ class ScannerDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     private func setPayButton() {
-        var cartValue = 0
-        for counter in viewModel.product {
-            cartValue += counter.price
-        }
-        payButton.setTitle("Pay : INR \(cartValue)", for: .normal)
+        let totalCartValue = viewModel.product.reduce(0) { $0 + Int($1.price)!}
+        payButton.setTitle("Pay : $ \(totalCartValue)", for: .normal)
     }
     
     private func setupTableView() {
-        productTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCellId")
+        productTableView.register(UINib(nibName: Constant.PRODUCT_TABLE_VIEW_CELL, bundle: nil), forCellReuseIdentifier: Constant.PRODUCT_TABLE_VIEW_CELL_ID)
         productTableView.estimatedRowHeight = 150
         productTableView.rowHeight = UITableView.automaticDimension
     }
@@ -47,7 +43,7 @@ class ScannerDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCellId", for: indexPath) as? ProductTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.PRODUCT_TABLE_VIEW_CELL_ID, for: indexPath) as? ProductTableViewCell
         cell?.configureCell(with: viewModel.product[indexPath.row])
         
         return cell!
@@ -60,6 +56,8 @@ class ScannerDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func payButtonAction(_ sender: Any) {
         
         // open payment screen
+        
+        
     }
 
 }

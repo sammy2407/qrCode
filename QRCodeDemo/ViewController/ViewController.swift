@@ -34,18 +34,18 @@ class ViewController: UIViewController {
     @IBAction func scanButtonTapped(_ sender: Any) {
         if scannerView.isRunning {
             scannerView.stopScanning()
-            scanButton.setTitle("Start scanning", for: .normal)
+            scanButton.setTitle(Constant.START_SCANNING, for: .normal)
         } else {
             scannerView.startScanning()
-            scanButton.setTitle("Stop scanning", for: .normal)
+            scanButton.setTitle(Constant.STOP_SCANNING, for: .normal)
         }
     }
     
     private func addAlertForFail() {
-        let alertViewController = UIAlertController(title: "Alert",
-                                                    message: "Unable to scan. Try again!",
+        let alertViewController = UIAlertController(title: Constant.ALERT,
+                                                    message: Constant.ALERT_MESSAGE,
                                                     preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Okay", style: .default)
+        let okAction = UIAlertAction(title: Constant.OKAY_MESSAGE, style: .default)
         alertViewController.addAction(okAction)
         self.present(alertViewController,
                      animated: true,
@@ -54,10 +54,26 @@ class ViewController: UIViewController {
 
 }
 
-
-
-
 extension ViewController: QRScannerViewDelegate {
+    
+    func qrScanningSucceededWith(data: Product?) {
+        
+        guard let data = data else { return }
+        product.append(data)
+               
+        scannerView.stopScanning()
+        scanButton.setTitle(Constant.START_SCANNING, for: .normal)
+               
+        // taking dummy data, just to be sure that this item will be added in the cart once the scanning process completes with metadata
+               
+        let storyBoard: UIStoryboard = UIStoryboard(name: Constant.MAIN , bundle: nil)
+        let scannerDetailVC = storyBoard.instantiateViewController(identifier: Constant.SCANNER_DETAILS_VC) as! ScannerDetailViewController
+               scannerDetailVC.viewModel = ScannerDetailViewModel(product: product)
+               present(scannerDetailVC,
+                       animated: true,
+                       completion: nil)
+    }
+    
     
     func qrScanningDidFail() {
         // show alert on fail
@@ -66,25 +82,6 @@ extension ViewController: QRScannerViewDelegate {
     
     func qrScanningDidStop() {
         
-    }
-    
-    func qrScanningSucceededWithCode(_ str: String?) {
-        // if scanning is successful and we got result then we will add product to the cart.
-        product.append(Product(title: "Hatchback",
-                                price: 40000,
-                                image: UIImage(named: "hatchBackCar")!))
-        
-        scannerView.stopScanning()
-        scanButton.setTitle("Start scanning", for: .normal)
-        
-        // taking dummy data, just to be sure that this item will be added in the cart once the scanning process completes with metadata
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let scannerDetailVC = storyBoard.instantiateViewController(identifier: "ScannerDetailViewController") as! ScannerDetailViewController
-        scannerDetailVC.viewModel = ScannerDetailViewModel(product: product)
-        present(scannerDetailVC,
-                animated: true,
-                completion: nil)
     }
     
 }
